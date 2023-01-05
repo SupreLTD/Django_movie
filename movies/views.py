@@ -16,3 +16,4 @@ class MovieDetailView(DetailView):
     """Full film description"""
     model = Movie
     slug_field = 'url'
+
