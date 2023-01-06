@@ -211,7 +211,7 @@ nav ul ul li a {
     display: block;
 }
 
-/* Second, Third and more Tiers	
+/* Second, Third and more Tiers
  * We move the 2nd and 3rd etc tier dropdowns to the left
  * by the amount of the width of the first tier.
 */
@@ -383,14 +383,14 @@ li > a:only-child:after {
 /*--/banner --*/
 
 .main-banner {
-    background: url(../images/banner.jpg)no-repeat center;
+    background: url(../happy-fairy-tail.png)no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
     background-size: cover;
     position: relative;
-    min-height: 50em;
+    min-height: 30em;
 }
 
 .main-banner.inner {
@@ -403,7 +403,12 @@ li > a:only-child:after {
     position: relative;
     min-height: 20em;
 }
-
+.bg1 {
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 0;
+    background-image: url('../single-post-pic-1.jpg');
+    min-height: 55em;
+}
 /*-- place holder --*/
 
 .banner-form ::-webkit-input-placeholder {
@@ -475,6 +480,11 @@ li > a:only-child:after {
 .ban-buttons a.active,
 .ban-buttons a:hover {
     opacity: 0.8;
+}
+
+.img-movie-shots{
+    max-width: 250px;
+    height: auto;
 }
 
 a.btn.active {
