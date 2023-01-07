@@ -1,4 +1,5 @@
 {% extends 'movies/base.html' %}
+{% load static %}
 {% block title %} {{ movie.title }} {% endblock title %}
 {% block container %}
     <div class="container py-md-3">
@@ -138,8 +139,7 @@
                 <div class="contact-single">
                     <h3 class="editContent" style="outline: none; cursor: inherit;">
                                     <span class="sub-tittle editContent"
-                                          style="outline: none; cursor: inherit;">02</span>Оставить
-                        отзыв</h3>
+                                          style="outline: none; cursor: inherit;">{{ movie.reviews_set.count }}</span>Оставить отзыв</h3>
                     <form action="{% url 'add_review' movie.id %}" method="post" class="mt-4" id="formReview">
                         {% csrf_token %}
                         <input type="hidden" name="parent" id="contactparent" value="">
@@ -175,9 +175,9 @@
                 <!--  //contact form grid ends here -->
             </div>
         </div>
-        {% for review in movie.reviews_set.all %}
+        {% for review in movie.get_review %}
             <div class="media py-5">
-                <img src="bundles/images/te2.jpg" class="mr-3 img-fluid" alt="image">
+                <img src="{% static '/images/tech.jpg' %}" class="mr-3 img-fluid" width="100"  alt="image">
                 <div class="media-body mt-4">
                     <h5 class="mt-0 editContent">
                         {{ review.name }}
@@ -186,22 +186,18 @@
                         {{ review.text }}
                     </p>
                     <a href="#formReview" onclick="addReview('{{ review.name }}', '{{ review.id }}')">Ответить</a>
-                    {#                    <div class="media mt-5 editContent"#}
-                    {#                         style="outline: none; cursor: inherit;">#}
-                    {#                        <a class="pr-3" href="#">#}
-                    {#                            <img src="bundles/images/te1.jpg" class="img-fluid " alt="image">#}
-                    {#                        </a>#}
-                    {#                        <div class="media-body">#}
-                    {#                            <h5 class="mt-0 editContent"#}
-                    {#                                style="outline: none; cursor: inherit;">Leia Organa</h5>#}
-                    {#                            <p class="mt-2 editContent"#}
-                    {#                               style="outline: none; cursor: inherit;"> Cras sit amet#}
-                    {#                                nibh libero, in gravida nulla. Nulla vel metus#}
-                    {#                                scelerisque ante sollicitudin. Cras purus odio,#}
-                    {#                                vestibulum in vulputate at, tempus viverra turpis. Fusce#}
-                    {#                                condimentum nunc ac nisi vulputate fringilla..</p>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
+                    {% for rew in review.reviews_set.all %}
+                    <div class="media mt-5 editContent">
+                        <a class="pr-3" href="#">
+                            <img src="{% static 'images/te2.jpg' %}" class="img-fluid " alt="image">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="mt-0 editContent">{{ rew.name }}</h5>
+                            <p class="mt-2 editContent"
+                               style="outline: none; cursor: inherit;">{{ rew.text }} </p>
+                        </div>
+                    </div>
+                        {% endfor %}
                 </div>
             </div>
         {% endfor %}
